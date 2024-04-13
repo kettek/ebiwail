@@ -11,10 +11,13 @@ Within the `game` subdirectory, issue the following commands:
 
 Issue this each time you want to rebuild your game.
 
+#### Build game
+
 ```
 env GOOS=js GOARCH=wasm go build -o ../frontend/src/assets/game.wasm
 ```
 
+#### Install wasm
 Issue this once.
 ```
 cp $(go env GOROOT)/misc/wasm/wasm_exec.js ../frontend/src/assets/
@@ -22,15 +25,19 @@ cp $(go env GOROOT)/misc/wasm/wasm_exec.js ../frontend/src/assets/
 
 ### On Windows PowerShell:
 
-Issue this each time you want to rebuild your game.
+#### Build game
+First set go to build js/wasm.
 ```
 $Env:GOOS = 'js'
 $Env:GOARCH = 'wasm'
-go build -o ../frontend/src/assets/game.wasm
-Remove-Item Env:GOOS
-Remove-Item Env:GOARCH
 ```
 
+Then issue this each time you want to (re)build your game.
+```
+go build -o ../frontend/src/assets/game.wasm
+```
+
+#### Install wasm
 Issue this once.
 ```
 $goroot = go env GOROOT
