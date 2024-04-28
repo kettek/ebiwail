@@ -11,20 +11,18 @@
         <button id="randomButton">Random</button>
         <button id="clearButton">Clear</button>
     </section>
-    <script src="src/assets/wasm_exec.js"></script>
+    <iframe src="iframe.html"></iframe>
     <script>
-        // Polyfill
-        if (!WebAssembly.instantiateStreaming) {
-            WebAssembly.instantiateStreaming = async (resp, importObject) => {
-                const source = await (await resp).arrayBuffer();
-                return await WebAssembly.instantiate(source, importObject);
-            };
-        }
+        const iframe = document.getElementsByTagName('iframe')[0]
+        const randomButton = document.getElementById('randomButton')
+        const clearButton = document.getElementById('clearButton')
         
-        const go = new Go();
-        WebAssembly.instantiateStreaming(fetch("src/assets/game.wasm"), go.importObject).then(result => {
-            go.run(result.instance);
-        });
+        randomButton.addEventListener('click', () => {
+            iframe.contentWindow.postMessage('button:random')
+        })
+        clearButton.addEventListener('click', () => {
+            iframe.contentWindow.postMessage('button:clear')
+        })
     </script>
 </body>
 </html>
