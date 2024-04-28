@@ -1,6 +1,6 @@
 This is a barebones PoC of using Ebitengine + Wails. It is scant on features and any enhancements are left up to the end-user.
 
-Note that an iframe wasn't used so as to allow for javascript interop. This creates potential issues, since Ebitengine makes a canvas that is sized to the browser window and it expects this to be the case. It might be possible to communicate to/from the iframe, but I cannot recall so haven't investigated.
+In this branch, iframes are used with message passing to send button clicks to the game. If bi-directional communication is needed, then the appropriate calls to `postMessage` need to be made in `main.go` and subsequently handled in JavaScript by adding a message handler to the iframe.
 
 Also note that it might be possible to restructure this to configure `vite` to automatically call the build steps below...
 
